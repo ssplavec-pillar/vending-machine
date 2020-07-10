@@ -14,4 +14,14 @@ describe('Vending Machine', () => {
 
         expect(machine.display).toBe('.05');
     });
+
+    it ('should display 10 cents when two nickels are inserted', () => {
+        const machine = new VendingMachine();
+
+        machine.insert('nickel');
+        machine.insert('nickel');
+
+        expect(machine.display).toBe('.10');
+    });
+
 });
