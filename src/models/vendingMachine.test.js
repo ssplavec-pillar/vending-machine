@@ -12,7 +12,7 @@ describe('Vending Machine', () => {
 
         machine.insert('nickel');
 
-        expect(machine.display).toBe('.05');
+        expect(machine.display).toBe('0.05');
     });
 
     it ('should display 10 cents when two nickels are inserted', () => {
@@ -21,7 +21,7 @@ describe('Vending Machine', () => {
         machine.insert('nickel');
         machine.insert('nickel');
 
-        expect(machine.display).toBe('.10');
+        expect(machine.display).toBe('0.10');
     });
 
 });
