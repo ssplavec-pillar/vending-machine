@@ -79,6 +79,7 @@ describe('Vending Machine', () => {
             machine.pressButton('cola');
 
             expect(machine.productBin).toBe('');
+            expect(machine.display).toBe('PRICE: 1.00');
         });
     });
 });
