@@ -41,4 +41,12 @@ describe('Vending Machine', () => {
         expect(machine.display).toBe('0.20');
     });
 
+    it('should display 25 cents when one quarter is inserted', () => {
+        const machine = new VendingMachine();
+
+        machine.insert('quarter');
+
+        expect(machine.display).toBe('0.25');
+    });
+
 });
