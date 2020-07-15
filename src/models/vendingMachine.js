@@ -2,6 +2,7 @@ class VendingMachine {
     display = 'INSERT COIN';
     amountInserted = 0;
     coinReturn = [];
+    productBin = '';
 
     insert = (coin) => {
         if (coin === 'penny') {
@@ -29,7 +30,14 @@ class VendingMachine {
     }
 
     pressButton = (product) => {
+        if (this.amountInserted == 1) {
+            this.dispenseProduct(product);
+        }
         this.display = 'PRICE: 1.00'
+    }
+
+    dispenseProduct = (product) => {
+        this.productBin = product;
     }
 };
 

@@ -58,5 +58,26 @@ describe('Vending Machine', () => {
 
             expect(machine.display).toBe('PRICE: 1.00');
         });
+
+        it('should dispense cola', () => {
+            machine.insert('quarter');
+            machine.insert('quarter');
+            machine.insert('quarter');
+            machine.insert('quarter');
+
+            machine.pressButton('cola');
+
+            expect(machine.productBin).toBe('cola');
+        });
+
+        it('should not dispense cola if amount does not equal price', () => {
+            machine.insert('quarter');
+            machine.insert('quarter');
+            machine.insert('quarter');
+
+            machine.pressButton('cola');
+
+            expect(machine.productBin).toBe('');
+        });
     });
 });
