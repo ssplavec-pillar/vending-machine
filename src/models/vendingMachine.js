@@ -3,10 +3,17 @@ class VendingMachine {
     amountInserted = 0;
 
     insert = (coin) => {
-        if (coin === 'dime') {
-            this.amountInserted += .1
-        } else {
-            this.amountInserted += .05
+        switch (coin) {
+            case 'dime':
+                this.amountInserted += .1;
+                break;
+            
+            case 'nickel':
+                this.amountInserted += .05;
+                break;
+
+            default:
+                break;
         }
         
         this.display = this.amountInserted.toFixed(2);

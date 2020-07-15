@@ -32,4 +32,13 @@ describe('Vending Machine', () => {
         expect(machine.display).toBe('0.10');
     });
 
+    it ('should display 20 cents when two dimes are inserted', () => {
+        const machine = new VendingMachine();
+
+        machine.insert('dime');
+        machine.insert('dime');
+
+        expect(machine.display).toBe('0.20');
+    });
+
 });
