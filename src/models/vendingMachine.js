@@ -27,6 +27,10 @@ class VendingMachine {
                 return 0;
         }
     }
+
+    pressButton = (product) => {
+        this.display = 'PRICE: 1.00'
+    }
 };
 
 export default VendingMachine;
