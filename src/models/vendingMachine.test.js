@@ -49,4 +49,13 @@ describe('Vending Machine', () => {
         expect(machine.display).toBe('0.25');
     });
 
+    it('should reject a penny', () => {
+        const machine = new VendingMachine();
+
+        machine.insert('penny');
+
+        expect(machine.coinReturn.length).toBe(1);
+        expect(machine.display).toBe('INSERT COIN');
+    })
+
 });

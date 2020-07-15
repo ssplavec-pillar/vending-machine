@@ -1,8 +1,13 @@
 class VendingMachine {
     display = 'INSERT COIN';
     amountInserted = 0;
+    coinReturn = [];
 
     insert = (coin) => {
+        if (coin === 'penny') {
+            this.coinReturn.push(coin);
+            return;
+        }
         this.amountInserted += this.getCoinValue(coin);
         this.display = this.amountInserted.toFixed(2);
     };
