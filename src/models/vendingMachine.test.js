@@ -68,6 +68,7 @@ describe('Vending Machine', () => {
             machine.pressButton('cola');
 
             expect(machine.productBin).toBe('cola');
+            expect(machine.display).toBe('THANK YOU');
         });
 
         it('should not dispense cola if amount does not equal price', () => {
