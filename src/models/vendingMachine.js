@@ -10,6 +10,9 @@ class VendingMachine {
         cola: {
             price: 1.00,
         },
+        candy: {
+            price: 0.65,
+        },
     }
 
     insert = (coin) => {

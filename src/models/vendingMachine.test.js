@@ -53,59 +53,70 @@ describe('Vending Machine', () => {
     });
 
     describe('Select Product', () => {
-        it('should display 1.00 when the cola button is pressed', () => {
-            machine.pressButton('cola');
+        describe ('Cola', () => {
+            it('should display 1.00 when the cola button is pressed', () => {
+                machine.pressButton('cola');
 
-            expect(machine.display).toBe('PRICE: 1.00');
+                expect(machine.display).toBe('PRICE: 1.00');
+            });
+
+            it('should dispense cola when amount equals price', () => {
+                machine.insert('quarter');
+                machine.insert('quarter');
+                machine.insert('quarter');
+                machine.insert('quarter');
+
+                machine.pressButton('cola');
+
+                expect(machine.productBin).toBe('cola');
+                expect(machine.display).toBe('THANK YOU');
+            });
+
+            it('should not dispense cola if amount does not equal price', () => {
+                machine.insert('quarter');
+                machine.insert('quarter');
+                machine.insert('quarter');
+
+                machine.pressButton('cola');
+
+                expect(machine.productBin).toBe('');
+                expect(machine.display).toBe('PRICE: 1.00');
+            });
         });
 
-        it('should dispense cola when amount equals price', () => {
-            machine.insert('quarter');
-            machine.insert('quarter');
-            machine.insert('quarter');
-            machine.insert('quarter');
+        describe ('Chips', () => {
+            it('should display 0.50 when the chips button is pressed', () => {
+                machine.pressButton('chips');
 
-            machine.pressButton('cola');
+                expect(machine.display).toBe('PRICE: 0.50');
+            });
 
-            expect(machine.productBin).toBe('cola');
-            expect(machine.display).toBe('THANK YOU');
+            it('should dispense chips when amount equals price', () => {
+                machine.insert('quarter');
+                machine.insert('quarter');
+
+                machine.pressButton('chips');
+
+                expect(machine.productBin).toBe('chips');
+                expect(machine.display).toBe('THANK YOU');
+            });
+
+            it('should not dispense chips if amount does not equal price', () => {
+                machine.insert('quarter');
+
+                machine.pressButton('chips');
+
+                expect(machine.productBin).toBe('');
+                expect(machine.display).toBe('PRICE: 0.50');
+            });
         });
 
-        it('should not dispense cola if amount does not equal price', () => {
-            machine.insert('quarter');
-            machine.insert('quarter');
-            machine.insert('quarter');
+        describe('Candy', () => {
+            it('should display 0.65 when the candy button is pressed', () => {
+                machine.pressButton('candy');
 
-            machine.pressButton('cola');
-
-            expect(machine.productBin).toBe('');
-            expect(machine.display).toBe('PRICE: 1.00');
+                expect(machine.display).toBe('PRICE: 0.65');
+            });
         });
-
-        it('should display 0.50 when the chips button is pressed', () => {
-            machine.pressButton('chips');
-
-            expect(machine.display).toBe('PRICE: 0.50');
-        });
-
-        it('should dispense chips when amount equals price', () => {
-            machine.insert('quarter');
-            machine.insert('quarter');
-
-            machine.pressButton('chips');
-
-            expect(machine.productBin).toBe('chips');
-            expect(machine.display).toBe('THANK YOU');
-        });
-
-        it('should not dispense chips if amount does not equal price', () => {
-            machine.insert('quarter');
-
-            machine.pressButton('chips');
-
-            expect(machine.productBin).toBe('');
-            expect(machine.display).toBe('PRICE: 0.50');
-        });
-
     });
 });
