@@ -88,6 +88,14 @@ describe('Vending Machine', () => {
             expect(machine.display).toBe('PRICE: 0.50');
         });
 
+        it('should dispense chips when amount equals price', () => {
+            machine.insert('quarter');
+            machine.insert('quarter');
 
+            machine.pressButton('chips');
+
+            expect(machine.productBin).toBe('chips');
+            expect(machine.display).toBe('THANK YOU');
+        });
     });
 });

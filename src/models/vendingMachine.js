@@ -3,6 +3,14 @@ class VendingMachine {
     amountInserted = 0;
     coinReturn = [];
     productBin = '';
+    productCatalog = {
+        chips: {
+            price: 0.50,
+        },
+        cola: {
+            price: 1.00,
+        },
+    }
 
     insert = (coin) => {
         if (coin === 'penny') {
@@ -29,28 +37,17 @@ class VendingMachine {
         }
     }
 
-    pressButton = (product) => {
-        switch (product) {
-            case 'cola':
-                if (this.amountInserted == 1) {
-                    this.dispenseProduct(product);
-                    this.display = 'THANK YOU';
-                } else {
-                    this.display = 'PRICE: 1.00';
-                }
-                break;
-            
-            case 'chips':
-                this.display = 'PRICE: 0.50';
-                break;
-            
-            default:
-                break;
+    pressButton = (productRequested) => {
+        if (this.amountInserted == this.productCatalog[productRequested].price) {
+            this.dispenseProduct(productRequested);
+        } else {
+            this.display = `PRICE: ${this.productCatalog[productRequested].price.toFixed(2)}`;
         }
     }
 
     dispenseProduct = (product) => {
         this.productBin = product;
+        this.display = 'THANK YOU';
     }
 };
 
