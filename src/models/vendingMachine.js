@@ -30,11 +30,22 @@ class VendingMachine {
     }
 
     pressButton = (product) => {
-        if (this.amountInserted == 1) {
-            this.dispenseProduct(product);
-            this.display = 'THANK YOU';
-        } else {
-            this.display = 'PRICE: 1.00';
+        switch (product) {
+            case 'cola':
+                if (this.amountInserted == 1) {
+                    this.dispenseProduct(product);
+                    this.display = 'THANK YOU';
+                } else {
+                    this.display = 'PRICE: 1.00';
+                }
+                break;
+            
+            case 'chips':
+                this.display = 'PRICE: 0.50';
+                break;
+            
+            default:
+                break;
         }
     }
 

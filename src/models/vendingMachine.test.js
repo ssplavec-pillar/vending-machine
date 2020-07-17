@@ -59,7 +59,7 @@ describe('Vending Machine', () => {
             expect(machine.display).toBe('PRICE: 1.00');
         });
 
-        it('should dispense cola', () => {
+        it('should dispense cola when amount equals price', () => {
             machine.insert('quarter');
             machine.insert('quarter');
             machine.insert('quarter');
@@ -81,5 +81,13 @@ describe('Vending Machine', () => {
             expect(machine.productBin).toBe('');
             expect(machine.display).toBe('PRICE: 1.00');
         });
+
+        it('should display 0.50 when the chips button is pressed', () => {
+            machine.pressButton('chips');
+
+            expect(machine.display).toBe('PRICE: 0.50');
+        });
+
+
     });
 });
