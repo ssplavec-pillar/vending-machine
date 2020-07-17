@@ -117,6 +117,27 @@ describe('Vending Machine', () => {
 
                 expect(machine.display).toBe('PRICE: 0.65');
             });
+
+            it('should dispense candy when amount equals price', () => {
+                machine.insert('quarter');
+                machine.insert('quarter');
+                machine.insert('dime');
+                machine.insert('nickel');
+
+                machine.pressButton('candy');
+
+                expect(machine.productBin).toBe('candy');
+                expect(machine.display).toBe('THANK YOU');
+            });
+
+            it('should not dispense candy if amount does not equal price', () => {
+                machine.insert('quarter');
+
+                machine.pressButton('candy');
+
+                expect(machine.productBin).toBe('');
+                expect(machine.display).toBe('PRICE: 0.65');
+            });
         });
     });
 });
