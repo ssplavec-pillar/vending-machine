@@ -1,4 +1,5 @@
 import VendingMachine from "./vendingMachine";
+import Coin from "./coin"
 
 let machine;
 beforeEach(() => {
@@ -6,6 +7,32 @@ beforeEach(() => {
 });
 
 describe('Vending Machine', () => {
+    describe('Deterine Coin Type', () => {
+        it('should return nickel when coin has dimensions of a nickel', () => {
+            const coin = new Coin(5, 21.21);
+
+            const coinType = machine.getTypeOfCoin(coin);
+
+            expect(coinType).toBe('nickel');
+        });
+        it('should return dime when coin has dimensions of a dime', () => {
+            const coin = new Coin(2.268, 17.91);
+
+            const coinType = machine.getTypeOfCoin(coin);
+
+            expect(coinType).toBe('dime');
+        });
+    });
+    
+    describe('Determine Coin Value', () => {
+        it('should return .05 for a coin with the dimensions of a nickel', () => {
+            const coin = new Coin(5, 21.21);
+
+            const value = machine.getCoinValue(coin);
+    
+            expect(value).toBe(.05);    
+        });
+    });
 
     describe('Accept Coins', () => {
         it ('should display default message when no coins inserted', () => {

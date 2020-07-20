@@ -1,3 +1,5 @@
+import coin from './coin';
+
 class VendingMachine {
     display = 'INSERT COIN';
     amountInserted = 0;
@@ -24,8 +26,22 @@ class VendingMachine {
         this.display = this.amountInserted.toFixed(2);
     };
 
+    getTypeOfCoin = (coin) => {
+        if (coin.weight == 5 && coin.size == 21.21) {
+            return 'nickel';
+        }
+        if (coin.weight == 2.268 && coin.size == 17.91) {
+            return 'dime';
+        }
+    }
+
     getCoinValue = (coin) => {
-        switch (coin) {
+        let coinType = coin;
+        if (typeof coin !== 'string') {
+            coinType = this.getTypeOfCoin(coin);
+        }
+
+        switch (coinType) {
             case 'dime':
                 return .1;
             
