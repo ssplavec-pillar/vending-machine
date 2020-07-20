@@ -2,6 +2,11 @@ import VendingMachine from "./vendingMachine";
 import Coin from "./coin"
 
 let machine;
+const penny = new Coin(2.5, 19.05);
+const nickel = new Coin(5, 21.21);
+const dime = new Coin(2.268, 17.91);
+const quarter = new Coin(6.25, 24.3);
+
 beforeEach(() => {
     machine = new VendingMachine();
 });
@@ -9,26 +14,30 @@ beforeEach(() => {
 describe('Vending Machine', () => {
     describe('Deterine Coin Type', () => {
         it('should return nickel when coin has dimensions of a nickel', () => {
-            const coin = new Coin(5, 21.21);
-
-            const coinType = machine.getTypeOfCoin(coin);
+            const coinType = machine.getTypeOfCoin(nickel);
 
             expect(coinType).toBe('nickel');
         });
         it('should return dime when coin has dimensions of a dime', () => {
-            const coin = new Coin(2.268, 17.91);
-
-            const coinType = machine.getTypeOfCoin(coin);
+            const coinType = machine.getTypeOfCoin(dime);
 
             expect(coinType).toBe('dime');
         });
+        it('should return quarter when coin has dimensions of a quarter', () => {
+            const coinType = machine.getTypeOfCoin(quarter);
+
+            expect(coinType).toBe('quarter');
+        });
+        it('should return undefined when coin is unknown', () => {
+            const coinType = machine.getTypeOfCoin(penny);
+
+            expect(coinType).toBe(undefined);
+        });
     });
-    
+
     describe('Determine Coin Value', () => {
         it('should return .05 for a coin with the dimensions of a nickel', () => {
-            const coin = new Coin(5, 21.21);
-
-            const value = machine.getCoinValue(coin);
+            const value = machine.getCoinValue(nickel);
     
             expect(value).toBe(.05);    
         });
@@ -40,39 +49,39 @@ describe('Vending Machine', () => {
         });
     
         it ('should display 5 cents when a nickel is inserted', () => {
-            machine.insert('nickel');
+            machine.insert(nickel);
     
             expect(machine.display).toBe('0.05');
         });
     
         it ('should display 10 cents when two nickels are inserted', () => {
-            machine.insert('nickel');
-            machine.insert('nickel');
+            machine.insert(nickel);
+            machine.insert(nickel);
     
             expect(machine.display).toBe('0.10');
         });
     
         it ('should  display 10 cents when a dime is inserted', () => {
-            machine.insert('dime');
+            machine.insert(dime);
     
             expect(machine.display).toBe('0.10');
         });
     
         it ('should display 20 cents when two dimes are inserted', () => {
-            machine.insert('dime');
-            machine.insert('dime');
+            machine.insert(dime);
+            machine.insert(dime);
     
             expect(machine.display).toBe('0.20');
         });
     
         it('should display 25 cents when one quarter is inserted', () => {
-            machine.insert('quarter');
+            machine.insert(quarter);
     
             expect(machine.display).toBe('0.25');
         });
     
         it('should reject a penny', () => {
-            machine.insert('penny');
+            machine.insert(penny);
     
             expect(machine.coinReturn.length).toBe(1);
             expect(machine.display).toBe('INSERT COIN');
@@ -88,10 +97,10 @@ describe('Vending Machine', () => {
             });
 
             it('should dispense cola when amount equals price', () => {
-                machine.insert('quarter');
-                machine.insert('quarter');
-                machine.insert('quarter');
-                machine.insert('quarter');
+                machine.insert(quarter);
+                machine.insert(quarter);
+                machine.insert(quarter);
+                machine.insert(quarter);
 
                 machine.pressButton('cola');
 
@@ -100,9 +109,9 @@ describe('Vending Machine', () => {
             });
 
             it('should not dispense cola if amount does not equal price', () => {
-                machine.insert('quarter');
-                machine.insert('quarter');
-                machine.insert('quarter');
+                machine.insert(quarter);
+                machine.insert(quarter);
+                machine.insert(quarter);
 
                 machine.pressButton('cola');
 
@@ -119,8 +128,8 @@ describe('Vending Machine', () => {
             });
 
             it('should dispense chips when amount equals price', () => {
-                machine.insert('quarter');
-                machine.insert('quarter');
+                machine.insert(quarter);
+                machine.insert(quarter);
 
                 machine.pressButton('chips');
 
@@ -129,7 +138,7 @@ describe('Vending Machine', () => {
             });
 
             it('should not dispense chips if amount does not equal price', () => {
-                machine.insert('quarter');
+                machine.insert(quarter);
 
                 machine.pressButton('chips');
 
@@ -146,10 +155,10 @@ describe('Vending Machine', () => {
             });
 
             it('should dispense candy when amount equals price', () => {
-                machine.insert('quarter');
-                machine.insert('quarter');
-                machine.insert('dime');
-                machine.insert('nickel');
+                machine.insert(quarter);
+                machine.insert(quarter);
+                machine.insert(dime);
+                machine.insert(nickel);
 
                 machine.pressButton('candy');
 
@@ -158,7 +167,7 @@ describe('Vending Machine', () => {
             });
 
             it('should not dispense candy if amount does not equal price', () => {
-                machine.insert('quarter');
+                machine.insert(quarter);
 
                 machine.pressButton('candy');
 

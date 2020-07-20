@@ -18,7 +18,7 @@ class VendingMachine {
     }
 
     insert = (coin) => {
-        if (coin === 'penny') {
+        if (this.getTypeOfCoin(coin) === undefined) {
             this.coinReturn.push(coin);
             return;
         }
@@ -33,13 +33,13 @@ class VendingMachine {
         if (coin.weight == 2.268 && coin.size == 17.91) {
             return 'dime';
         }
+        if (coin.weight == 6.25 && coin.size == 24.3) {
+            return 'quarter';
+        }
     }
 
     getCoinValue = (coin) => {
-        let coinType = coin;
-        if (typeof coin !== 'string') {
-            coinType = this.getTypeOfCoin(coin);
-        }
+        const coinType = this.getTypeOfCoin(coin);
 
         switch (coinType) {
             case 'dime':
