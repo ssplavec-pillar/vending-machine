@@ -1,4 +1,5 @@
 import coin from './coin';
+import Coin from './coin';
 
 class VendingMachine {
     display = 'INSERT COIN';
@@ -57,8 +58,9 @@ class VendingMachine {
     }
 
     pressButton = (productRequested) => {
-        if (this.amountInserted == this.productCatalog[productRequested].price) {
+        if (this.amountInserted >= this.productCatalog[productRequested].price) {
             this.dispenseProduct(productRequested);
+            this.coinReturn.push(new Coin(5, 21.21))
         } else {
             this.display = `PRICE: ${this.productCatalog[productRequested].price.toFixed(2)}`;
         }

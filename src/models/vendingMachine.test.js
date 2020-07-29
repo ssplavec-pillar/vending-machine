@@ -176,4 +176,16 @@ describe('Vending Machine', () => {
             });
         });
     });
+
+    describe('Make Change', () => {
+        it('should return 10 cents when 75 centers entered and candy is selected', () => {
+            machine.insert(quarter);
+            machine.insert(quarter);
+            machine.insert(quarter);
+
+            machine.pressButton('candy');
+
+            expect(machine.coinReturn.length).toBe(1);
+        });
+    });
 });
