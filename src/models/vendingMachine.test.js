@@ -2,10 +2,10 @@ import VendingMachine from "./vendingMachine";
 import Coin from "./coin"
 
 let machine;
-const penny = new Coin(2.5, 19.05);
-const nickel = new Coin(5, 21.21);
-const dime = new Coin(2.268, 17.91);
-const quarter = new Coin(6.25, 24.3);
+const penny = new Coin('penny', 2.5, 19.05);
+const nickel = new Coin('nickel', 5, 21.21);
+const dime = new Coin('dime', 2.268, 17.91);
+const quarter = new Coin('quarter', 6.25, 24.3);
 
 beforeEach(() => {
     machine = new VendingMachine();
